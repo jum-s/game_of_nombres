@@ -1,0 +1,21 @@
+!!!
+%html{lang: "fr"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %script{:src => "./jquery-3.4.0.min.js"}
+  %body
+    %ul
+      - @game.exercices.each do | exo |
+        %li
+          %audio{src:"/clips/#{exo[1]}", controls: ''}
+          Réponse
+          .answer{:id => "#{exo[1]}"}
+            "#{exo[2]}"
+    :javascript
+      $(document).ready(function() {
+        $('.answer').hide()
+        $('ul > li').click(function(){
+            $('.answer', this).show()
+        })
+      })
